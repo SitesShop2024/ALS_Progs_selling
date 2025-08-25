@@ -706,7 +706,7 @@ def support_func(message):
 
 def run_bot():
     print("Бот запущен!")
-    bot.polling(none_stop=True)
+    bot.infinty_polling()
 
 
 def run_site():
