@@ -610,8 +610,8 @@ def my_orders(call):
             else:
                 funcs = s["funcs"]
             markup = types.InlineKeyboardMarkup(row_width=2)
-            btn1 = types.InlineKeyboardButton(f"Гарантия {id}", callback_data=f'check_{id}')
-            btn2 = types.InlineKeyboardButton(f"Отменить {id}", callback_data=f'delete_{id}')
+            btn1 = types.InlineKeyboardButton(f"Гарантия", callback_data=f'check_{id}')
+            btn2 = types.InlineKeyboardButton(f"Отменить", callback_data=f'delete_{id}')
             markup.add(btn1, btn2)
             text = (f"Размер сайта: {size}\nАдмин панель: {admin_panel}\nДополнительные функции:\n{funcs}\n{garant}\nЦена:"
                     f" {price}\n\nСтатус: {is_ready}\nКод заказа: {id}\n\nДата покупки: {garant_date}\n\nДля получения ваше"
