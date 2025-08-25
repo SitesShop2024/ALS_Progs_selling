@@ -711,8 +711,13 @@ def run_bot():
 
 def run_site():
     print("Server is working!")
-    app.run(host='0.0.0.0', port=5000)
 
     if __name__ == "__main__":
-        threading.Thread(target=run_bot).start()
-        threading.Thread(target=run_site).start()
+        app.run(host='0.0.0.0', port=8080)
+
+def run_all():
+    threading.Thread(target=run_bot).start()
+    threading.Thread(target=run_site).start()
+
+
+threading.Thread(target=run_all).start()
