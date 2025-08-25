@@ -4,10 +4,13 @@ import sqlite3
 import config
 from datetime import datetime
 from flask import Flask
+import threading
 
 
 bot = telebot.TeleBot(config.TOKEN)
 now = datetime.now()
+
+app = Flask(__name__)
 
 
 def db_connect():
@@ -38,6 +41,11 @@ def init_db():
 
 
 init_db()
+
+
+@app.route('/')
+def index():
+    return "Bot is working!"
 
 
 @bot.message_handler(commands=['start'])
@@ -696,5 +704,15 @@ def support_func(message):
         bot.send_message(message.chat.id, "Вы не администратор!")
 
 
-print("Бот запущен!")
-bot.polling(none_stop=True)
+def run_bot():
+    print("Бот запущен!")
+    bot.polling(none_stop=True)
+
+
+def run_site():
+    print("Server is working!")
+    app.run(host='0.0.0.0', port=5000)
+
+    if __name__ == "__main__":
+        threading.Thread(target=run_bot).start()
+        threading.Thread(target=run_site).start()
