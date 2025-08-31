@@ -43,11 +43,6 @@ def init_db():
 init_db()
 
 
-@app.route('/')
-def index():
-    return "Bot is working!"
-
-
 @bot.message_handler(commands=['start'])
 def start(message):
     markup = types.InlineKeyboardMarkup(row_width=2)
@@ -704,20 +699,24 @@ def support_func(message):
         bot.send_message(message.chat.id, "Вы не администратор!")
 
 
+@app.route('/')
+def index():
+    return "Bot is working!"
+
+
+def run_site():
+    if __name__ == "__main__":
+        app.run(host='0.0.0.0', port=8080)
+
+
 def run_bot():
     print("Бот запущен!")
     bot.infinty_polling()
 
 
-def run_site():
-    print("Server is working!")
-
-    if __name__ == "__main__":
-        app.run(host='0.0.0.0', port=8080)
-
-def run_all():
+def run_server():
     threading.Thread(target=run_bot).start()
     threading.Thread(target=run_site).start()
 
 
-threading.Thread(target=run_all).start()
+threading.Thread(target=run_server).start()
